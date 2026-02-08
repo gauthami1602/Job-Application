@@ -16,7 +16,9 @@ CHECK_INTERVAL = 7200  # 2 hours in seconds
 LAST_JOB_IDS = set()  # Track jobs we've already seen
 
 # Initialize Anthropic client
-client = Anthropic()
+import os
+api_key = os.getenv("ANTHROPIC_API_KEY")
+client = Anthropic(api_key=api_key) if api_key else None
 
 def search_indeed_jobs():
     """Search Indeed for jobs matching criteria"""
